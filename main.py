@@ -128,10 +128,15 @@ def draw_finished_screen():
     screen.fill(WHITE)
     if current_stage < MAX_STAGES:
         text = font.render(f"Stage {current_stage} Completed!", True, GREY)
+        text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 50))
+        screen.blit(text, text_rect)
     else:
-        text = font.render("Jag älskar dig Josefin<3", True, RED)
-    text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 50))
-    screen.blit(text, text_rect)
+        first_line = font.render("Completed all stages!", True, BLACK)
+        second_line = font.render("I love you Josefin<3", True, RED)
+        first_line_rect = first_line.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 25))
+        second_line_rect = second_line.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 25))
+        screen.blit(first_line, first_line_rect)
+        screen.blit(second_line, second_line_rect)
     draw_button(return_button, "Continue" if current_stage < MAX_STAGES else "Home")
 
 def check_win_condition():
